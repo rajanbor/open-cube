@@ -2,6 +2,14 @@
 
 ## Unreleased
 
+- Plan two things the product is asked for and cannot do alone: a company
+  tenant whose people share one workbench, and `@cube <task>` in a Slack thread.
+  Both are specified (`ENTERPRISE_TENANCY.md`, `MENTION_INVOCATION.md`) and
+  governed by ADR 009, which decides the thing that matters before any of it is
+  written: there is one optional control plane, it holds definitions and
+  accounting and never workspaces, execution stays on the person's machine, and
+  the local product never requires any of it.
+
 - Build and open the desktop application with one command: `pnpm desktop`
   produces `dist/desktop/Open Cube.app` — the engine and the client in one
   bundle — and opens it; `pnpm desktop:install` also copies it into

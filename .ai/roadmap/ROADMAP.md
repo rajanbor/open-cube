@@ -39,3 +39,34 @@ Phase 2.
 
 - [#20 Optional account, encrypted sync and mobile](https://github.com/rajanbor/open-cube/issues/20)
 - [#21 Cross-platform distribution](https://github.com/rajanbor/open-cube/issues/21)
+
+## Phase 5 — Teams
+
+Two milestones, both governed by
+[ADR 009: an optional control plane](../adr/009-optional-control-plane.md), and
+both waiting on the workbench daemon (#9) and the agent runtime (#10): neither
+is worth anything until an agent can actually run locally.
+
+**[Enterprise: tenant and shared workbench](https://github.com/rajanbor/open-cube/milestone/1)**
+— a company creates a tenant, its people sign in as themselves, and they share
+one workbench definition while the work still runs on each person's machine.
+Specified in [`ENTERPRISE_TENANCY.md`](../specs/ENTERPRISE_TENANCY.md).
+
+- [#73 The control-plane boundary, in types and a test](https://github.com/rajanbor/open-cube/issues/73)
+- [#74 Create a tenant, verify a domain, invite people, hold roles](https://github.com/rajanbor/open-cube/issues/74)
+- [#75 Each person signs in as themselves](https://github.com/rajanbor/open-cube/issues/75)
+- [#76 Publish shared definitions and policy bundles](https://github.com/rajanbor/open-cube/issues/76)
+- [#77 Usage and audit with a name on them](https://github.com/rajanbor/open-cube/issues/77)
+- [#78 The Enterprise panel in Settings](https://github.com/rajanbor/open-cube/issues/78)
+
+**[@cube: call an agent from where the work is talked about](https://github.com/rajanbor/open-cube/milestone/2)**
+— `@cube fix the failing checkout test` in a Slack thread runs an agent in the
+bound workbench and answers in the thread, with the provenance the app always
+shows. Specified in [`MENTION_INVOCATION.md`](../specs/MENTION_INVOCATION.md).
+
+- [#79 The mention contract, independent of Slack](https://github.com/rajanbor/open-cube/issues/79)
+- [#80 Slack — mention, thread session, reply](https://github.com/rajanbor/open-cube/issues/80)
+- [#81 Bindings — which channel is which workbench](https://github.com/rajanbor/open-cube/issues/81)
+- [#82 Approvals in the thread](https://github.com/rajanbor/open-cube/issues/82)
+- [#83 Offline is an answer](https://github.com/rajanbor/open-cube/issues/83)
+- [#84 A second surface, to prove the contract](https://github.com/rajanbor/open-cube/issues/84)
