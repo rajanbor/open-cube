@@ -26,8 +26,9 @@ over `lib/layout.ts`, which owns the tab model and its persistence. State comes 
 `src/data/prototype-snapshot.json` in a browser preview; the status bar and the
 top bar name which source is in use.
 
-Run it natively with `pnpm tauri dev`; the browser preview is for quick
-iteration and labels itself "preview snapshot".
+`pnpm desktop` builds the application bundle and opens it; `pnpm app` runs the
+same window against the dev server. The browser preview is for quick iteration
+and labels itself "preview snapshot".
 
 Related specs: `DOCKING_LAYOUT.md`, `PROJECT_WORKSPACE.md`, `AGENT_STUDIO.md`, `INSPECTOR_MODEL.md`, `TERMINAL_PANEL.md`, `CANVAS_WORKFLOW.md`,
 `MODEL_CATALOG.md`, `USAGE_ACCOUNTING.md`. Decisions:

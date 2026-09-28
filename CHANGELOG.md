@@ -2,6 +2,13 @@
 
 ## Unreleased
 
+- Build and open the desktop application with one command: `pnpm desktop`
+  produces `dist/desktop/Open Cube.app` — the engine and the client in one
+  bundle — and opens it; `pnpm desktop:install` also copies it into
+  `/Applications`. It skips the dmg, which doubles the build for nothing when
+  the point is to look at the window. The Swift bundle, the installer and CI
+  are untouched.
+
 - Add a terminal board: as many terminals as the work needs, in windows that
   open in a chosen sandbox, move, resize, raise, close and tidy into columns,
   with the arrangement restored on the next start.

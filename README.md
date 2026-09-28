@@ -30,10 +30,22 @@ The product is a Rust workspace with one web client, described in
 
 ```sh
 pnpm install
-pnpm app        # the window, against the dev server
-pnpm test       # cargo test --workspace
-pnpm build      # build the client
+pnpm desktop            # build the application and open its window
+pnpm desktop:install    # …and copy it into /Applications
+pnpm app                # the window against the dev server, for development
+pnpm dev                # the client in a browser tab, for quick iteration
+pnpm test               # cargo test --workspace
 ```
+
+`pnpm desktop` produces `dist/desktop/Open Cube.app` — the Rust engine and the
+client in one bundle, opened from Finder like any other application. The
+browser tab is a preview: it runs the same client against a generated snapshot
+and labels itself `preview snapshot`, where the application reads the engine
+and says `rust engine`.
+
+The `Open Cube.app` that the current installer ships is still the Swift client;
+it is replaced when [#33](https://github.com/rajanbor/open-cube/issues/33)
+retires it.
 
 The window opens on a chat with an in-app inspector that answers from the
 engine snapshot — what each agent is doing, what runs in each sandbox, which
