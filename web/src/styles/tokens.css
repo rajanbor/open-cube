@@ -11,13 +11,15 @@
   --font-ui: -apple-system, BlinkMacSystemFont, "Inter", "Segoe UI", Roboto, sans-serif;
   --font-mono: ui-monospace, "SF Mono", "JetBrains Mono", "Cascadia Mono", Menlo, monospace;
 
-  --text-xs: 11px;
-  --text-sm: 12px;
-  --text-base: 13px;
+  /* A size up on every step: the interface is read at arm's length, not
+     audited. See .ai/product/DESIGN_LANGUAGE.md. */
+  --text-xs: 11.5px;
+  --text-sm: 12.5px;
+  --text-base: 13.5px;
   --text-md: 14px;
-  --text-lg: 15px;
-  --text-xl: 19px;
-  --text-display: 40px;
+  --text-lg: 16px;
+  --text-xl: 21px;
+  --text-display: 42px;
 
   --radius-sm: 6px;
   --radius-md: 8px;
@@ -25,8 +27,7 @@
   --radius-xl: 16px;
   --radius-pill: 999px;
 
-  --activity-width: 48px;
-  --rail-width: 248px;
+  --rail-width: 264px;
   --rail-right-width: 292px;
   --topbar-height: 46px;
   --statusbar-height: 24px;

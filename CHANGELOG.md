@@ -2,6 +2,13 @@
 
 ## Unreleased
 
+- Quieten the interface down to one navigation column. The activity strip folds
+  into the sidebar as plain rows — the areas keep their names, icons and
+  shortcuts — with New chat at the top and the account at the foot. Selection
+  is a fill and a weight rather than a rule down the side, tab strips stop
+  looking like buttons, rows are taller, every type step is a size larger, and
+  the composer is one rounded field with room around it.
+
 - Plan two things the product is asked for and cannot do alone: a company
   tenant whose people share one workbench, and `@cube <task>` in a Slack thread.
   Both are specified (`ENTERPRISE_TENANCY.md`, `MENTION_INVOCATION.md`) and

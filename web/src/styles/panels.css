@@ -53,15 +53,13 @@
   flex: 1;
   align-items: center;
   gap: 6px;
-  padding: 6px 6px;
+  padding: 7px 6px;
   border: 0;
   background: transparent;
-  color: var(--text-secondary);
-  font-size: var(--text-xs);
-  font-weight: 600;
-  letter-spacing: 0.04em;
+  color: var(--text-faint);
+  font-size: var(--text-sm);
+  font-weight: 500;
   text-align: left;
-  text-transform: uppercase;
 }
 
 .rail-section__head svg {
@@ -113,11 +111,11 @@
   display: flex;
   width: 100%;
   align-items: center;
-  gap: 9px;
-  padding: 6px 8px;
+  gap: 10px;
+  min-height: 32px;
+  padding: 5px 10px;
   border: 0;
-  border-left: 2px solid transparent;
-  border-radius: var(--radius-sm);
+  border-radius: var(--radius-md);
   background: transparent;
   color: var(--text-secondary);
   text-align: left;
@@ -127,19 +125,21 @@
   background: var(--bg-hover);
 }
 
+/* Selection is a fill and a weight, not a rule down the side. */
 .rail-row.is-active {
-  border-left-color: var(--accent);
   background: var(--bg-active);
   color: var(--text);
 }
 
+.rail-row.is-active .rail-row__main strong {
+  font-weight: 600;
+}
+
 .rail-row__icon {
   display: grid;
-  width: 22px;
-  height: 22px;
+  width: 20px;
+  height: 20px;
   flex: 0 0 auto;
-  border-radius: var(--radius-sm);
-  background: var(--bg-surface);
   color: var(--text-muted);
   place-items: center;
 }
@@ -153,7 +153,7 @@
 
 .rail-row__main strong {
   overflow: hidden;
-  font-size: var(--text-sm);
+  font-size: var(--text-base);
   font-weight: 500;
   text-overflow: ellipsis;
   white-space: nowrap;
@@ -163,6 +163,7 @@
   overflow: hidden;
   color: var(--text-faint);
   font-size: var(--text-xs);
+  line-height: 1.5;
   text-overflow: ellipsis;
   white-space: nowrap;
 }

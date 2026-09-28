@@ -7,15 +7,14 @@
    is also the period picker, and the panel toggles. Appearance is not here: it
    lives in Settings, and the account menu links to it. In the native window it is also the drag region and leaves room
    for the traffic lights.
-2. Activity strip: one icon per area — Agents, Search, Source control,
-   Sandboxes, Models, Workflows — on the far left, with settings and the
-   account at its foot. The lit icon marks its edge; picking the lit one
-   collapses the sidebar and leaves the strip.
-3. Sidebar: opens to the right of the strip and shows one area at a time, in
-   collapsible sections, with live state on every row. Agents keeps the
+2. Sidebar: one navigation column, and the only one. At its top, what you can
+   start — New chat — then the areas as rows: Projects, Agents, Search, Source
+   control, Sandboxes, Models, Workflows. Below them, whichever area is open,
+   in collapsible sections with live state on every row. Agents keeps the
    workbench chat pinned above it, and the open agent lists its chats under
    itself with a control to start another; chats never move into a tab strip
-   beside the chrome. The sidebar is resizable.
+   beside the chrome. The account sits at the foot with settings beside it.
+   The column is resizable and hides with `⌘B`.
 4. Work area: tabs held in groups. Every surface — chat, canvas, sandbox,
    model, usage, agent, agent studio, settings — opens as a tab with its own
    icon, and any tab can be split to the right so two groups sit side by side,
@@ -30,11 +29,12 @@
    facts; the rest belongs to Usage.
 
 `⌘K` command palette · `⌘B` sidebar · `⌘J` terminals · `⌘I` right rail ·
-`⌘\` split the open tab · `⌘W` close it · `⌘1`–`⌘6` the areas of the strip.
+`⌘\` split the open tab · `⌘W` close it · `⌘1`–`⌘7` the areas.
 
-The arrangement — strip, sidebar, groups — is VS Code's, and deliberately so:
-everything here is an object worth reading next to another object, and that
-layout is the one a developer already knows how to drive.
+The arrangement — one column, then groups of tabs — keeps what VS Code is right
+about, which is that everything here is an object worth reading next to another
+object, and drops what makes it loud. One list to read, not a grid of icons
+beside a list.
 
 ## Required interactions
 
