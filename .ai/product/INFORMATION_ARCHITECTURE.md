@@ -8,7 +8,7 @@ Models and providers are capabilities used by an agent, alongside skills, prepar
 
 ## Desktop navigation
 
-Navigation is three columns. The activity strip names the areas — agents, search, source control, sandboxes, models, workflows — and the sidebar shows whichever one is lit, in collapsible sections. Selecting an object opens it in the work area; it never replaces the shell.
+Navigation is one column. It names what can be started, then the areas — projects, agents, search, source control, sandboxes, models, workflows — then whichever area is open, in collapsible sections, with the account at its foot. Selecting an object opens it in the work area; it never replaces the shell.
 
 The work area holds tabs in groups, so two surfaces — chat, canvas, sandbox, models, usage, agent, agent studio or settings — can be read at once. The terminal dock sits beneath it and the workbench API rail (values, functions, modules, inspector policy) beside it. Both start closed. The status bar reports branch, sandbox, running agents, state source and cost; the rest of the accounting lives in Usage.
 

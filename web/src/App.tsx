@@ -1,6 +1,5 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { TopBar } from "./components/TopBar";
-import { ActivityBar } from "./components/ActivityBar";
 import { Sidebar } from "./components/Sidebar";
 import { EditorGroups } from "./components/EditorGroups";
 import { RightRail } from "./components/RightRail";
@@ -211,13 +210,12 @@ export default function App() {
   const focused = activeTab(layout);
   const focusedKey = focused?.key ?? "";
 
-  const pickActivity = useCallback(
-    (id: ActivityId) => {
-      setActivity(id);
-      setSidebarOpen((visible) => (id === activity ? !visible : true));
-    },
-    [activity],
-  );
+  // With one navigation column, picking an area shows it. Hiding the column is
+  // ⌘B, which is a different intent from choosing what to look at.
+  const pickActivity = useCallback((id: ActivityId) => {
+    setActivity(id);
+    setSidebarOpen(true);
+  }, []);
 
   /* ------------------------------------------------------------ terminals */
 
@@ -691,24 +689,6 @@ export default function App() {
       />
 
       <div className="app__body" ref={shell}>
-        <ActivityBar
-          activity={activity}
-          sidebarOpen={sidebarOpen}
-          counts={{
-            projects: snapshot.projects.length,
-            agents: snapshot.agents.length,
-            sandboxes: snapshot.sandboxes.length,
-            vcs: snapshot.versionControl.changes.length,
-          }}
-          onPick={pickActivity}
-          onSettings={() => open(settingsTab())}
-          onShortcuts={() =>
-            notify(
-              "⌘K palette · ⌘B sidebar · ⌘J panel · ⌘I workbench API · ⌘\\ split · ⌘W close · ⌘1–⌘7 areas",
-            )
-          }
-        />
-
         {sidebarOpen && (
           <div className="sidebar-slot" style={{ width: sidebarWidth }}>
             <Sidebar
@@ -729,6 +709,13 @@ export default function App() {
               chatsOf={chatsOf}
               onNewChat={newChat}
               onClose={() => setSidebarOpen(false)}
+              onActivity={pickActivity}
+              onSettings={() => open(settingsTab())}
+              onShortcuts={() =>
+                notify(
+                  "⌘K palette · ⌘B sidebar · ⌘J panel · ⌘I workbench API · ⌘\\ split · ⌘W close · ⌘1–⌘7 areas",
+                )
+              }
             />
             <div
               className="sidebar-slot__grip"

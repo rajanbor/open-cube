@@ -26,8 +26,7 @@ the native window, so visual review happens there.
 | Surface | What it does |
 | --- | --- |
 | Top bar | Workspace menu, version control (branch, head, commits, pinned model versions), chat model picker, tokens and cost, panel toggles, appearance |
-| Activity strip | One icon per area — agents, search, source control, sandboxes, models, workflows — with settings and the account at its foot |
-| Sidebar | The lit area, in collapsible sections: workbench chat and agents with their chats, search, branch and working tree, sandboxes and terminals, the catalogue, workflows |
+| Sidebar | The one navigation column: New chat, the areas as rows, then the open area in collapsible sections, with the account at its foot |
 | Work area | Tabs in groups. Any tab splits to the right, drags between groups, and the whole arrangement is restored on the next start |
 | Projects | A folder as a tab: path, branch, working tree, files and agents; "Open in editor" names the command it would run; new projects come from a template, a folder or a repository |
 | Chat | Main window. The in-app inspector answers from the engine snapshot and reports model, version, tokens, cost, sources and refusals |
@@ -52,7 +51,7 @@ Shortcuts: `⌘K` palette · `⌘B` sidebar · `⌘J` terminals · `⌘I` right 
 | `../crates/core/src/inspector.rs` | Scoped, redacting summariser |
 | `../crates/app/src/lib.rs` | `desktop_snapshot` and `inspector_ask` commands |
 | `app/` | Next App Router: root layout, the client page, the error boundary |
-| `src/components/` | Top bar, activity strip, sidebar, editor groups, terminal dock, palette, primitives |
+| `src/components/` | Top bar, sidebar, editor groups, terminal dock, palette, primitives |
 | `src/lib/layout.ts` | The tab model: groups, splitting, and what is restored |
 | `src/lib/terminal.ts` | What a terminal does with what is typed, for the panel and the board alike |
 | `src/views/` | Chat, canvas, sandboxes, models, usage, agent, settings |

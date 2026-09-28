@@ -1,12 +1,13 @@
 # Spec: workbench shell
 
-Acceptance: the app opens on a chat backed by the in-app inspector; an activity
-strip names every area of the workbench and the sidebar shows one of them at a
-time in collapsible sections, reflecting live state; the work area holds tabs
+Acceptance: the app opens on a chat backed by the in-app inspector; one
+navigation column carries what can be started, the areas of the workbench as
+rows, and whichever area is open, in collapsible sections reflecting live
+state; the work area holds tabs
 that can be split so two groups sit side by side, and the arrangement is
 restored on the next start; the right rail lists values, functions and
-modules with the inspector policy; the account menu is reachable from the foot
-of the activity strip; opening an agent shows its project, branch, working tree and chats,
+modules with the inspector policy; the account sits at the foot of that column with
+settings beside it; opening an agent shows its project, branch, working tree and chats,
 and can start another chat; the terminal dock opens, resizes and hides without
 losing its buffer; the canvas edits a workflow; the sandbox view draws
 the isolation boundary; the model catalogue shows each model's identity, pinned
@@ -20,8 +21,8 @@ shifts layout; every control for an unimplemented capability reports why.
 ## Prototype status
 
 Implemented in `web/`: a Next.js App Router entry over `src/`, split into `components/`, `views/`, `lib/`,
-`data/` and `styles/`. The shell is `ActivityBar`, `Sidebar` and `EditorGroups`
-over `lib/layout.ts`, which owns the tab model and its persistence. State comes from the Rust engine
+`data/` and `styles/`. The shell is `Sidebar` and `EditorGroups` over
+`lib/layout.ts`, which owns the tab model and its persistence. State comes from the Rust engine
 (`desktop_snapshot`, `inspector_ask`) under Tauri, and from the generated
 `src/data/prototype-snapshot.json` in a browser preview; the status bar and the
 top bar name which source is in use.

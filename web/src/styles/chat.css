@@ -11,13 +11,13 @@
 }
 
 .chat__head {
+  /* Air above the conversation; the identity is not a title bar. */
   display: flex;
   flex: 0 0 auto;
   align-items: center;
   justify-content: space-between;
   gap: 14px;
-  padding: 11px 22px;
-  border-bottom: 1px solid var(--border-subtle);
+  padding: 14px 26px;
 }
 
 .chat__identity {
@@ -28,7 +28,8 @@
 }
 
 .chat__identity h1 {
-  font-size: var(--text-md);
+  font-size: var(--text-lg);
+  font-weight: 600;
 }
 
 .chat__identity p {
@@ -217,12 +218,13 @@
   margin: 0 auto;
   padding: 9px 11px;
   border: 1px solid var(--border);
-  border-radius: 14px;
+  border-radius: 18px;
   background: var(--bg-surface);
+  box-shadow: var(--shadow-sm);
 }
 
 .chat > .composer {
-  margin-bottom: 18px;
+  margin-bottom: 24px;
 }
 
 .composer input {
@@ -230,7 +232,11 @@
   min-width: 0;
   border: 0;
   background: transparent;
-  font-size: var(--text-md);
+  font-size: var(--text-lg);
+}
+
+.composer input::placeholder {
+  color: var(--text-faint);
 }
 
 .composer input:focus {
@@ -248,8 +254,8 @@
 
 .composer__send {
   display: grid;
-  width: 28px;
-  height: 28px;
+  width: 32px;
+  height: 32px;
   border: 0;
   border-radius: 50%;
   background: var(--accent);
@@ -328,22 +334,23 @@
 
 .start-cards button {
   display: flex;
-  min-height: 120px;
+  min-height: 116px;
   flex-direction: column;
   gap: 14px;
-  padding: 14px;
-  border: 1px solid var(--border);
-  border-radius: var(--radius-lg);
-  background: var(--bg-surface);
-  color: var(--text);
+  padding: 16px;
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-xl);
+  background: transparent;
+  color: var(--text-secondary);
   font-size: var(--text-md);
-  line-height: 1.4;
+  line-height: 1.45;
   text-align: left;
 }
 
 .start-cards button:hover {
-  border-color: var(--border-strong);
+  border-color: var(--border);
   background: var(--bg-hover);
+  color: var(--text);
 }
 
 .start-cards__icon {
@@ -373,7 +380,7 @@
   flex-direction: column;
   align-items: stretch;
   gap: 8px;
-  padding: 11px 12px 9px;
+  padding: 14px 14px 10px;
 }
 
 .composer input {

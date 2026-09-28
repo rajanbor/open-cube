@@ -2,7 +2,8 @@ import { useMemo, useState } from "react";
 import { Icon } from "./Icon";
 import { RailSection } from "./RailSection";
 import { AgentFace, ModelGlyph } from "./Glyph";
-import { Badge, IconButton, StatusDot } from "./primitives";
+import { Avatar, Badge, IconButton, StatusDot } from "./primitives";
+import { Menu } from "./Menu";
 import { accentOf, modelOf, toneOf } from "../lib/identity";
 import {
   activities,
@@ -35,40 +36,46 @@ type Props = {
   chatsOf: (agentId: string) => ChatRef[];
   onNewChat: (agentId: string) => void;
   onClose: () => void;
+  /** Switch the area this column is showing. */
+  onActivity: (id: ActivityId) => void;
+  onSettings: () => void;
+  onShortcuts: () => void;
 };
 
-/** The panel between the activity strip and the work area. It shows one area
- *  at a time — whichever icon is lit — and never more, so the eye has one list
- *  to read instead of six stacked on each other. */
+/** The one navigation column: what you can start, the areas of the workbench,
+ *  then whichever area is open — and the account at the foot. One column,
+ *  plain rows, no second strip of icons beside it. */
 export function Sidebar(props: Props) {
   const area = activities.find((item) => item.id === props.activity);
 
   return (
     <aside className="sidebar" aria-label={`${area?.title ?? "Workbench"} sidebar`}>
-      <header className="sidebar__head">
-        <span>{area?.title}</span>
-        <div className="sidebar__head-actions">
-          {props.activity === "agents" && (
-            <IconButton
-              icon="plus"
-              label="Design a new agent"
-              size={13}
-              onClick={() => props.onOpen(studioTab(null))}
-            />
-          )}
-          {props.activity === "projects" && (
-            <IconButton
-              icon="plus"
-              label="New project"
-              size={13}
-              onClick={() => props.onOpen(newProjectTab())}
-            />
-          )}
-          <IconButton icon="close" label="Hide the sidebar" size={13} onClick={props.onClose} />
-        </div>
-      </header>
-
       <div className="sidebar__scroll">
+        <nav className="areas" aria-label="Workbench areas">
+          <button
+            className="area area--start"
+            onClick={() => props.onOpen(workbenchChatTab())}
+          >
+            <Icon name="plus" size={17} />
+            <span>New chat</span>
+          </button>
+
+          {activities.map((item, index) => (
+            <button
+              key={item.id}
+              className={`area ${props.activity === item.id ? "is-active" : ""}`}
+              title={item.hint}
+              aria-current={props.activity === item.id ? "true" : undefined}
+              onClick={() => props.onActivity(item.id)}
+            >
+              <Icon name={item.icon} size={17} />
+              <span>{item.title}</span>
+              {props.activity === item.id ? null : <em>⌘{index + 1}</em>}
+            </button>
+          ))}
+        </nav>
+
+
         {props.activity === "projects" && <ProjectArea {...props} />}
         {props.activity === "agents" && <AgentsArea {...props} />}
         {props.activity === "search" && <SearchArea {...props} />}
@@ -77,6 +84,48 @@ export function Sidebar(props: Props) {
         {props.activity === "models" && <ModelArea {...props} />}
         {props.activity === "workflows" && <WorkflowArea {...props} />}
       </div>
+
+      <footer className="sidebar__account">
+        <Menu
+          className="menu--account"
+          placement="above"
+          title="Account"
+          chevron={false}
+          label={
+            <>
+              <Avatar name="Rajan Bor" tone="accent" />
+              <span className="sidebar__who">
+                <strong>Rajan Bor</strong>
+                <small>This machine</small>
+              </span>
+            </>
+          }
+        >
+          {(close) => (
+            <>
+              <p className="menu__label">Account</p>
+              <div className="menu__note">
+                Open Cube has no sign-in. This profile is local to the machine, and no provider
+                credential is stored by the app. A company tenant, where people sign in as
+                themselves and share one workbench, is planned — see the Enterprise milestone.
+              </div>
+              <button
+                className="menu__item"
+                onClick={() => {
+                  props.onShortcuts();
+                  close();
+                }}
+              >
+                <Icon name="code" size={14} />
+                <span>Keyboard shortcuts</span>
+              </button>
+            </>
+          )}
+        </Menu>
+
+        <IconButton icon="help" label="Keyboard shortcuts" size={15} onClick={props.onShortcuts} />
+        <IconButton icon="settings" label="Settings" size={15} onClick={props.onSettings} />
+      </footer>
     </aside>
   );
 }
@@ -87,7 +136,11 @@ function ProjectArea({ snapshot, focusedKey, onOpen }: Props) {
   const create = newProjectTab();
   return (
     <>
-      <RailSection title="Projects" count={snapshot.projects.length}>
+      <RailSection
+        title="Projects"
+        count={snapshot.projects.length}
+        action={{ icon: "plus", label: "New project", onClick: () => onOpen(newProjectTab()) }}
+      >
         {snapshot.projects.map((project) => {
           const tab = projectTab(project);
           return (
@@ -160,7 +213,15 @@ function AgentsArea({ snapshot, openKeys, focusedKey, onOpen, chatsOf, onNewChat
         </span>
       </button>
 
-      <RailSection title="Agents" count={snapshot.agents.length}>
+      <RailSection
+        title="Agents"
+        count={snapshot.agents.length}
+        action={{
+          icon: "plus",
+          label: "Design a new agent",
+          onClick: () => onOpen(studioTab(null)),
+        }}
+      >
         {snapshot.agents.map((agent) => {
           const chats = chatsOf(agent.id);
           const tab = agentTab(agent);
@@ -172,7 +233,7 @@ function AgentsArea({ snapshot, openKeys, focusedKey, onOpen, chatsOf, onNewChat
                 <button
                   className="rail-row__open"
                   onClick={() => onOpen(tab)}
-                  title={`${agent.name} — ${agent.task}`}
+                  title={`${agent.name} — ${agent.task}\nupdated ${agent.updatedAt}`}
                 >
                   <AgentFace accent={accentOf(agent.accent)} size={24} />
                   <span className="rail-row__main">
@@ -182,9 +243,10 @@ function AgentsArea({ snapshot, openKeys, focusedKey, onOpen, chatsOf, onNewChat
                       {agent.project.branch}
                     </small>
                   </span>
+                  {/* One dot, no timestamp: the row is a name, and the name
+                      needs the width more than the clock does. */}
                   <span className="rail-row__tail">
                     <StatusDot tone={toneOf(agent.status)} pulse={agent.status === "running"} />
-                    <em>{agent.updatedAt}</em>
                   </span>
                 </button>
                 <IconButton
